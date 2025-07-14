@@ -308,3 +308,8 @@ const user = { name: 'Ali' };
 const details = { age: 25 };
 const merged = { ...user, ...details };
 console.log(merged); // { name: 'Ali', age: 25 }
+
+
+
+
+Note: In Javascript reverse deoes not work on string only on array so we use split on string in reverse function
