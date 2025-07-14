@@ -151,3 +151,81 @@ console.log(found); // 12 (first one)
 | `reduce()` | Any value      | Reduce array to single value   | ❌ No         | Any type    |
 | `find()`   | Single element | Find first matching item       | ✅ Yes        | One item    |
 
+
+
+## Callbacks, Promises, async/await
+
+They all deals with asynchrous programming mean you can run it without blocking the main thread,and get result later
+
+# Callback
+A callback is function which is passed as arguement to another function to be executed later
+function greet(name, callback) {
+  console.log('Hello, ' + name);
+  callback();
+}
+
+greet('Ali', () => {
+  console.log('How are you?');
+});
+ - Issue in callback when is nested too much harder to read, debug and maintain.
+
+ # Promises 
+ A promise is an object representing a eventual/future result of async operation
+ It acts like a placeholder for a value that will exist in the future — either resolved successfully or failed with an error.
+
+
+ it has three states
+ 1. pending
+ 2. fulfilled
+ 3. rejected
+
+ const promise = new Promise((resolve, reject) => {
+  // async operation
+  if (/* successful */) {
+    resolve(value);   // ✅ fulfilled
+  } else {
+    reject(error);    // ❌ rejected
+  }
+});
+resolve(value): Sends back the successful result.
+
+reject(error): Sends back an error when something goes wrong.
+
+Inside the function is where your async code runs.
+
+const getData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const success = true;
+      if (success) {
+        resolve("Data loaded");
+      } else {
+        reject("Failed to load data");
+      }
+    }, 1000);
+  });
+};
+
+getData()
+  .then(data => console.log(data))       // runs if resolve()
+  .catch(error => console.log(error));   // runs if reject()
+
+
+## async/await
+
+the cleanest, most readable way to write asynchronous code in modern JavaScript (ES2017+). It’s built on top of Promises, and helps avoid .then() chaining and callback hell.
+
+ What is async/await?
+async → Marks a function as asynchronous (it returns a Promise).
+
+await → Pauses execution inside an async function until a Promise settles (either resolved or rejected).
+
+Parallel vs Sequential await
+// Sequential (slow):
+const data1 = await getData1();
+const data2 = await getData2();
+
+// Parallel (faster):
+const [data1, data2] = await Promise.all([getData1(), getData2()]);
+Use Promise.all to run async tasks in parallel.
+
