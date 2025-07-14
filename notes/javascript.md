@@ -229,3 +229,82 @@ const data2 = await getData2();
 const [data1, data2] = await Promise.all([getData1(), getData2()]);
 Use Promise.all to run async tasks in parallel.
 
+
+
+## Destructuring
+
+Destructuring lets you unpack values from arrays or objects into distinct variables.
+
+const nums = [10, 20, 30];
+
+const [a, b, c] = nums;
+
+console.log(a); // 10
+console.log(b); // 20
+
+
+const [first, , third] = [1, 2, 3];
+console.log(third); // 3
+
+const user = { name: 'Ali', age: 25 };
+
+const { name, age } = user;
+
+console.log(name); // Ali
+console.log(age);  // 25
+
+Rename during destructuring
+const { name: username } = user;
+console.log(username); // Ali
+
+
+
+Set default values
+const { role = 'guest' } = user;
+console.log(role); // guest (if user.role is undefined)
+
+## Rest Operator
+Rest opertor collect rest of the values into a variable.
+
+- Array Rest
+const [first, ...others] = [1, 2, 3, 4];
+console.log(first); // 1
+console.log(others); // [2, 3, 4]
+
+- Object Rest
+
+const { name, ...rest } = { name: 'Ali', age: 25, country: 'PK' };
+console.log(rest); // { age: 25, country: 'PK' }
+
+- Funtion Rest
+function sum(...numbers) {
+  return numbers.reduce((a, b) => a + b, 0);
+}
+console.log(sum(1, 2, 3)); // 6
+
+
+## Spread operator
+spread is used is to expand an array or object
+
+- Copying array
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4];
+console.log(arr2); // [1, 2, 3, 4]
+
+- Merging array
+const a = [1, 2];
+const b = [3, 4];
+const combined = [...a, ...b]; // [1, 2, 3, 4]
+
+
+- Copying obbject
+const obj1 = { a: 1 };
+const obj2 = { ...obj1, b: 2 };
+console.log(obj2); // { a: 1, b: 2 }
+
+
+- Merging arary
+const user = { name: 'Ali' };
+const details = { age: 25 };
+const merged = { ...user, ...details };
+console.log(merged); // { name: 'Ali', age: 25 }
