@@ -79,3 +79,103 @@ For JSX: a javascript xml is a syntax extension for javscript used with react al
 <div>
 {isLoggedIn ?  (<AdminPanel />) : (<LoginForm/>)}
 </div>
+
+
+# Funtional Components
+basic reusable building blocks using functions
+
+# UseState
+useState is ReactHook that allows you to add a local state to a functional compoenent.Before hooks, only class compoents could have state
+
+const [state,setState]= useState(initalValue)
+state – the current state value
+
+setState – a function to update that state
+
+initialValue – the default value of the state
+
+function Product({ initialQuantity }) {
+  const [quantity, setQuantity] = useState(initialQuantity);
+
+  const increase = () => setQuantity(q => q + 1);
+  const decrease = () => setQuantity(q => (q > 0 ? q - 1 : 0));
+
+  return (
+    <div>
+      <h3>Quantity: {quantity}</h3>
+      <button onClick={decrease}>-</button>
+      <button onClick={increase}>+</button>
+    </div>
+  );
+}
+
+Rules of useState
+✅ Always call it at the top level of your component.
+
+✅ Never call it inside loops, conditions, or nested functions.
+
+✅ Only call it in React function components or custom hooks.
+
+
+
+# UseEffect
+
+is a ReactHook that allows you to run side effect in your functional compoenent.Side effect are operation that afffect things outside the compoent like
+Fetching data
+
+Subscribing to a service
+
+Manipulating the DOM
+
+Setting up timers
+
+Logging
+
+useEffect(() => {
+  // Your side effect code here
+
+  return () => {
+    // Cleanup code (optional)
+  };
+}, [dependencies]);
+
+
+## What are Props?
+are used to pass data from parent to child component.
+Props are read-only
+
+Similar to function arguments
+
+Used to customize components
+
+## What are Events in React?
+React handles events like the browser, but uses camelCase for event names and functions as values.
+
+function Button() {
+  function handleClick() {
+    alert('Button clicked!');
+  }
+
+  return <button onClick={handleClick}>Click Me</button>;
+}
+
+
+## Combining Props & Events
+You can pass functions as props to allow child components to trigger logic in the parent.
+
+// Parent Component
+function App() {
+  function sayHello() {
+    alert("Hello from parent!");
+  }
+
+  return <Child onGreet={sayHello} />;
+}
+
+// Child Component
+function Child({ onGreet }) {
+  return <button onClick={onGreet}>Greet</button>;
+}
+✔️ Clicking the Greet button triggers sayHello() from the parent.
+
+

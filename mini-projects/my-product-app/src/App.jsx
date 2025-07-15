@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from './components/ProductCard';
+import SimpleForm from './components/SimpleForm';
 
 const products = [
   {
@@ -26,6 +27,9 @@ function App() {
         {products.map(product=>{
           return <ProductCard key={product.id} product={product} />
         })}
+
+          <SimpleForm />
+
       </div>
     </div>
   );
