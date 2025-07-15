@@ -179,3 +179,189 @@ function Child({ onGreet }) {
 ✔️ Clicking the Greet button triggers sayHello() from the parent.
 
 
+
+## React Hooks
+React hooks are built-in function in react that let you use  state and other react feature in functional componenet instead of clss component.
+
+- State is data that changes over data in a component.
+It’s like a component’s memory — something it remembers and can update.
+
+🎯 Key Characteristics of State:
+Dynamic: It can change when users interact.
+
+Local: Each component can have its own state.
+
+Triggers re-render: When state changes, the component re-renders to show updated UI.
+
+## 🧩 What is componentDidMount?
+
+componentDidMount is a lifecycle method in class components that runs once, right after the component appears (mounts) on the screen.
+
+## 🛠️ Why Hooks?
+Hooks:
+
+Make components cleaner and reusable
+
+Remove the need for confusing class syntax
+
+Allow stateful logic to be reused via custom hooks
+
+Help separate concerns (e.g., fetching, subscribing)
+
+## What is useState?
+UseSatte is a react hook that allow you to add state to functional component. before that we can only add state to class component.
+- Issues in Class Components
+Boilerplate & Verbosity: Have to write a lot code
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({ count: this.state.count + 1 });
+  }
+
+  render() {
+    return <button onClick={this.handleClick}>Click {this.state.count}</button>;
+  }
+}
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>Click {count}</button>;
+}
+Much cleaner and shorter.
+
+
+- this Binding Confusion
+In class components, you had to manually bind methods to this, otherwise they wouldn’t work:
+
+- 3. Component Logic Was Hard to Reuse
+- Class components use lifecycle methods like:
+
+    componentDidMount
+
+    componentDidUpdate
+
+    componentWillUnmount
+
+    These were often split and duplicated:
+
+
+## Use Effect
+useEffect is a react hook that let you run side effect in functional component.
+A side effect is anything that affects something outside the component — like:
+
+Fetching data
+
+Subscribing to events
+
+Setting timers
+
+Manually updating the DOM
+
+Syncing with localStorage, APIs, etc.
+
+# UseREf
+Imagine a box you can put something into — like a number, a DOM element, or even an API connection — and it keeps that thing safe across re-renders.
+
+const myRef = useRef(123);
+myRef.current // 👉 this is where the value lives (123)
+myRef.current = 456;
+✅ React will NOT re-render your component when you update .current.
+
+
+useREf is a react hook that gives you mutable reference object which presist accross re-renders without causing a re-render when it is updated.
+
+## You can use useRef for:
+Accessing DOM elements directly (like document.getElementById)
+
+Storing mutable values that don't trigger re-renders (like timers, counters)
+
+Persisting state-like values without re-rendering the component
+
+## UseContext 
+context: a way to share data (theme,langauge) between component without passing it manually props at every level.
+its a global state for your component tree- but lighweight.
+UseContext is a react hook that allows you to access global data from a context without props maunally passing through every level of component tree.
+
+🧩 3 Simple Steps to Use useContext
+1. create a context
+import { createContext } from 'react';
+
+const UserContext = createContext(); // can pass default value too
+
+2. 2. Provide the context
+3. Consume the context
+
+
+## useReducer
+userReducer is a react hook that allow to manage state in your component just like useState but better when things get complex
+
+Think of it like this:
+useState = for simple values (like toggles, counters)
+
+useReducer = for more logic or multiple steps (like a todo list, cart, form steps)
+
+useReducer is a React Hook that is used to manage more complex state logic — especially when:
+
+You have multiple related state values
+
+You want to keep your state transitions clear and predictable
+
+You are doing more than just setState
+
+const [state, dispatch] = useReducer(reducerFunction, initialState);
+state: the current state
+
+dispatch(action): the function to send an action to the reducer
+
+reducerFunction: decides how to update the state
+
+initialState: your default state
+
+
+
+## UseMemo/UseCallBack
+both are used for performance optimization techniques 
+
+Usememo is used to remember a calculated value so react does not recalculate it everytime your component re-render.
+
+Sometimes your component re-renders a lot, and some calculations are slow or expensive.
+useMemo helps skip those calculations unless something changes
+
+## useCallBack is used is remember a function so it does not get recreated on every render.
+
+React re-creates all functions on every render.
+Sometimes you pass functions as props to child components — if the function changes, the child re-renders unnecessarily.
+
+
+Use useCallback when:
+
+You pass a function to a memoized child component
+
+You need stable function references in useEffect or useMemo
+
+You’re optimizing performance in large apps
+
+
+## What is React.memo?
+React.memo is a Higher-Order Component (HOC) that prevents a component from re-rendering unless its props change.
+
+
+
+
+
+## useLayoutEffect
+useLayoutEffect is just like useEffect, but it runs synchronously (immediately) after the DOM is updated, before the browser paints what the user sees.
+
+You use useLayoutEffect when you need to measure or change the layout (position, size, scroll, etc.) before the browser draws anything on screen.
+
+This avoids flickering or layout jumping.
+
+## Custom Hook
+A Custom Hook is just a JavaScript function that uses built-in React Hooks inside it and follows the naming rule: it must start with use.
+
