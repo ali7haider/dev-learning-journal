@@ -10,6 +10,7 @@ const ProductList=({products,setEditingProduct,deleteProduct})=>{
             (<p>no product available</p>) :
             (
             <ul>
+                
                 {products.map((product)=>(
                     <li key={product.id}>
                         <strong>{product.name}</strong> - {product.price}
