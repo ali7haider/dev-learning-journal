@@ -14,7 +14,6 @@ const ProductForm=({addProduct,editingProduct,updateProduct})=>{
         e.preventDefault();
         if (!name || !price) return
         const newProduct= {
-            id:editingProduct?.id || Date.now(),
             name,
             price
 

@@ -1,4 +1,4 @@
-const { Product } = require('../models/Product');
+const Product = require('../models/Product');
 
 const getProducts = async (req, res) => {
   try {
@@ -21,7 +21,6 @@ const addProduct = async (req,res) => {
     }
 };
 const removeProduct = async (req, res) => {
-    const { id } = req.params;
     try {
     await Product.destroy({ where: { id: req.params.id } });
       res.status(204).send();

@@ -27,7 +27,6 @@ function App() {
     .then(newProduct=>setProducts([...products,newProduct]))
     .catch(err => console.error('Failed to add product:', err));
   }
-  setProducts
 
   const deleteProduct = (id) => {
     fetch(`http://localhost:5000/api/products/${id}`, {
